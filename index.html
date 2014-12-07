@@ -6,9 +6,10 @@
 </head>
 <body>
   <p>
-    <div>Current price per bitcoin: <span class="bold" data-btc-price="1.0">1.0 BTC</span></div>
+    <div>Price per bitcoin: <span class="bold" data-btc-price="1.0">1.0 BTC</span></div>
+    <div>Update <span id="time">UNKNOWN</span>.  <a id="refresh" href="javascript:;">Refresh</a></div>
     <div>My fee percentage is:</div>
-    <input type="text" name="fee_percentage"/>%
+    <input type="text" name="commission"/>%
     <div>Amount to buy in USD</div>
     <input type="text" name="buy_amount_USD"/>USD
     <div>Amount to buy in BTC</div>
@@ -18,11 +19,11 @@
   </p>
 
   <p>
-    <div>You pay in fees: <span class="bold">X USD</span></div>
+    <div>You pay in fees: <span id="fee_total" class="bold">X</span> USD</div>
   </p>
 
   <p>
     <div>Total in USD:</div>
-    <input type="text" name="Total in USD"/> USD
+    <input type="text" name="total_USD"/> USD
   </p>
 </body>
