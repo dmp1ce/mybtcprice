@@ -1,3 +1,8 @@
+// Create global namespace for mybtcprice
+if (!window.mybtcprice) {
+  window.mybtcprice = {};
+}
+
 $(document).ready(function() {
   bitcoinprices.init({
 
@@ -86,11 +91,8 @@ $(document).ready(function() {
 
   function init() {
     // Set the commission
-    $("input[name='commission']").val('15')
-    $("input[name='commission']").prop('disabled', true);
-
-    // Set the BTC to 1 to give a starting calculation
-    $("input[name='buy_amount_BTC']").val('1')
+    $("input[name='commission']").val(mybtcprice.commission)
+    $("input[name='commission']").prop('disabled', mybtcprice.commission_locked);
   }
 
   // Calculate other fields based on the "change" parameter.
