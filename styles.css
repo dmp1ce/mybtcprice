@@ -2,6 +2,14 @@
   font-weight: bold;
 }
 
+.small {
+  font-size: x-small;
+}
+
+.center {
+  text-align: center;
+}
+
 #time {
   font-weight: bold;
 }
