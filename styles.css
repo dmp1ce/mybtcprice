@@ -1,13 +1,23 @@
-.bold {
-  font-weight: bold;
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6em;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 0 0.6em;
+  max-width: 40em;
+}
+
+.group {
+  margin: 0.8em 0;
 }
 
 .small {
   font-size: x-small;
-}
-
-.center {
-  text-align: center;
 }
 
 #time {
