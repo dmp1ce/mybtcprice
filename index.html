@@ -1,32 +1,78 @@
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>mybtcprice</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="group">
+      Price per bitcoin: <strong class="label label-default" data-btc-price="1.0">1.0 BTC</strong>
+    </div>
+
+    <div class="group">
+      Update <strong id="time">UNKNOWN</strong>. <a id="refresh" class="btn btn-default btn-sm" href="javascript:;">Refresh</a>
+    </div>
+
+    <div class="group">
+      <strong>My fee percentage is:</strong>
+      <div class="input-group">
+        <input class="form-control" type="text" name="commission" />
+        <span class="input-group-addon">%</span>
+      </div>
+    </div>
+      
+    <div class="group">
+      <strong>Amount to buy in USD</strong>
+      <div class="input-group">
+        <input class="form-control" type="text" name="buy_amount_USD" />
+        <span class="input-group-addon">USD</span>
+      </div>
+    </div>
+
+    <div class="group">
+      <strong>Amount to buy in BTC</strong>
+      <div class="input-group">
+        <input class="form-control" type="text" name="buy_amount_BTC" />
+        <span class="input-group-addon">BTC</span>
+      </div>
+    </div>
+
+    <div class="group">
+      <strong>Amount to buy in mBTC</strong>
+      <div class="input-group">
+        <input class="form-control" type="text" name="buy_amount_mBTC" />
+        <span class="input-group-addon">mBTC</span>
+      </div>
+    </div>
+
+    <div class="group text-center">
+      <strong>You pay in fees: <span id="fee_total" class="label label-default">X</span> USD</strong>
+    </div>
+
+    <div class="group">
+      <strong>Total in USD:</strong>
+      <div class="input-group">
+        <input class="form-control" type="text" name="total_USD" />
+        <span class="input-group-addon">USD</span>
+      </div>
+    </div>
+
+    <div class="group small text-center">
+      <a href="https://github.com/dmp1ce/mybtcprice">Fork this calculator</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://cdn.rawgit.com/miohtama/bitcoin-prices/b9840e28114b0c3b1ea5af36bad804add2db0dd3/bitcoinprices.js"></script>
   <script src="settings.js"></script>
   <script src="btcprice.js"></script>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <p>
-    <div>Price per bitcoin: <span class="bold" data-btc-price="1.0">1.0 BTC</span></div>
-    <div>Update <span id="time">UNKNOWN</span>.  <a id="refresh" href="javascript:;">Refresh</a></div>
-    <div>My fee percentage is:</div>
-    <input type="text" name="commission"/>%
-    <div>Amount to buy in USD</div>
-    <input type="text" name="buy_amount_USD"/>USD
-    <div>Amount to buy in BTC</div>
-    <input type="text" name="buy_amount_BTC"/>BTC
-    <div>Amount to buy in mBTC</div>
-    <input type="text" name="buy_amount_mBTC"/>mBTC
-  </p>
-
-  <p>
-    <div>You pay in fees: <span id="fee_total" class="bold">X</span> USD</div>
-  </p>
-
-  <p>
-    <div>Total in USD:</div>
-    <input type="text" name="total_USD"/> USD
-  </p>
-
-  <div class="small center"><a href="https://github.com/dmp1ce/mybtcprice">Fork this calculator</a></div>
 </body>
