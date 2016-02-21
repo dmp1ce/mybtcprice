@@ -117,13 +117,13 @@ $(document).ready(function() {
 
     if (change != 'total_USD') {
       // buy_amount_USD * (1 + commission / 100)
-      total_USD = nearest(buy_amount_USD * (1 + (commission / 100)), 5);
+      total_USD = nearest(buy_amount_USD / (1 - (commission / 100)), 1);
       total_USD = (total_USD <= buy_amount_USD && buy_amount_USD !== 0) ? total_USD + 5 : total_USD;
       $("input[name='total_USD']").val(total_USD);
     }
     if (change != 'buy_amount_USD') {
       // total_USD / (1 + commission / 100)
-      buy_amount_USD = nearest(total_USD / (1 + (commission / 100)), 5);
+      buy_amount_USD = nearest(total_USD * (1 - (commission / 100)), 1);
       $("input[name='buy_amount_USD']").val(buy_amount_USD);
     }
     if (change != 'buy_amount_BTC' && change != 'buy_amount_mBTC') {
