@@ -4,63 +4,74 @@ if (!window.mybtcprice) {
 }
 
 $(document).ready(function() {
-  bitcoinprices.init({
+  // bitcoinprices.init({
+  //
+  //   // Where we get bitcoinaverage data
+  //   url: "https://apiv2.bitcoinaverage.com/indices/global/ticker/",
+  //
+  //   // Which of bitcoinaverages value we use to present prices
+  //   marketRateVariable: "last",
+  //
+  //   // Which currencies are in shown to the user
+  //   currencies: ["USD", "BTC"],
+  //
+  //   // Special currency symbol artwork
+  //   //symbols: {
+  //   //    "BTC": "<i class='fa fa-btc'>B</i>"
+  //   //},
+  //
+  //   // Which currency we show user by the default if
+  //   // no currency is selected
+  //   defaultCurrency: "USD",
+  //
+  //   // How the user is able to interact with the prices
+  //   ux : {
+  //       // Make everything with data-btc-price HTML attribute clickable
+  //       clickPrices : true,
+  //
+  //       // Build Bootstrap dropdown menu for currency switching
+  //       menu : true,
+  //
+  //       // Allow user to cycle through currency choices in currency:
+  //       clickableCurrencySymbol:  true
+  //   },
+  //
+  //   // Allows passing the explicit jQuery version to bitcoinprices.
+  //   // This is useful if you are using modular javascript (AMD/UMD/require()),
+  //   // but for most normal usage you don't need this
+  //   jQuery: jQuery,
+  //
+  //   // Price source data attribute
+  //   priceAttribute: "data-btc-price",
+  //
+  //   // Price source currency for data-btc-price attribute.
+  //   // E.g. if your shop prices are in USD
+  //   // but converted to BTC when you do Bitcoin
+  //   // checkout, put USD here.
+  //   priceOrignalCurrency: "BTC"
+  // });
 
-    // Where we get bitcoinaverage data
-    url: "https://api.bitcoinaverage.com/ticker/all",
+  var rate = 0;
 
-    // Which of bitcoinaverages value we use to present prices
-    marketRateVariable: "last",
-
-    // Which currencies are in shown to the user
-    currencies: ["USD", "BTC"],
-
-    // Special currency symbol artwork
-    //symbols: {
-    //    "BTC": "<i class='fa fa-btc'>B</i>"
-    //},
-
-    // Which currency we show user by the default if
-    // no currency is selected
-    defaultCurrency: "USD",
-
-    // How the user is able to interact with the prices
-    ux : {
-        // Make everything with data-btc-price HTML attribute clickable
-        clickPrices : true,
-
-        // Build Bootstrap dropdown menu for currency switching
-        menu : true,
-
-        // Allow user to cycle through currency choices in currency:
-        clickableCurrencySymbol:  true
-    },
-
-    // Allows passing the explicit jQuery version to bitcoinprices.
-    // This is useful if you are using modular javascript (AMD/UMD/require()),
-    // but for most normal usage you don't need this
-    jQuery: jQuery,
-
-    // Price source data attribute
-    priceAttribute: "data-btc-price",
-
-    // Price source currency for data-btc-price attribute.
-    // E.g. if your shop prices are in USD
-    // but converted to BTC when you do Bitcoin
-    // checkout, put USD here.
-    priceOrignalCurrency: "BTC"
-  });
+  function getPrice() {
+    $.ajax({url: "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD", success: function(result){
+      console.log('result:', result);
+      console.log('result.last:', result.last);
+      rate = result.last;
+    }});
+  }
 
   // Reload price on clicking "Refresh"
   $( "#refresh" ).click(function() {
     $('#refresh').text('Refreshing');
     $('#time').text('Refreshing time');
-    bitcoinprices.loadData();
+    getPrice();
+    // bitcoinprices.loadData();
   });
 
   // What happens when the price is updated?
   $(document).bind("marketdataavailable", function() {
-    myTime = new Date(bitcoinprices.data.timestamp);
+    // myTime = new Date(bitcoinprices.data.timestamp);
     $('#time').text(myTime);
     $('#refresh').text('Refresh');
     calculate();
@@ -103,7 +114,8 @@ $(document).ready(function() {
     buy_amount_mBTC = Number($("input[name='buy_amount_mBTC']").val());
     total_USD = Number($("input[name='total_USD']").val());
     commission = Number($("input[name='commission']").val());
-    rate = bitcoinprices.data.USD.last;
+    // console.log('bitcoinprices:', bitcoinprices);
+    // rate = bitcoinprices.data.USD.last;
 
     // If the user knows how much BTC they want.
     if (change == 'buy_amount_BTC') {
