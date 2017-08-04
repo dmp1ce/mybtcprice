@@ -55,9 +55,13 @@ $(document).ready(function() {
 
   function getPrice() {
     $.ajax({url: "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD", success: function(result){
-      console.log('result:', result);
-      console.log('result.last:', result.last);
-      rate = result.last;
+      // console.log('result:', result);
+      // console.log('result.last:', result.last);
+      if (result && result.last) {
+        rate = result.last;
+      } else {
+        console.error('ajax error');
+      }
     }});
   }
 
@@ -104,6 +108,7 @@ $(document).ready(function() {
     // Set the commission
     $("input[name='commission']").val(mybtcprice.commission);
     $("input[name='commission']").prop('disabled', mybtcprice.commission_locked);
+    getPrice();
   }
 
   // Calculate other fields based on the "change" parameter.
