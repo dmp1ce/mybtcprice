@@ -55,10 +55,13 @@ $(document).ready(function() {
 
   function getPrice() {
     $.ajax({url: "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD", success: function(result){
-      // console.log('result:', result);
-      // console.log('result.last:', result.last);
       if (result && result.last) {
         rate = result.last;
+        var myTime = new Date(result.timestamp * 1000);
+        $('#time').text(myTime);
+        $("#price-label").text(rate);
+        $('#refresh').text('Refresh');
+        calculate();
       } else {
         console.error('ajax error');
       }
@@ -71,14 +74,6 @@ $(document).ready(function() {
     $('#time').text('Refreshing time');
     getPrice();
     // bitcoinprices.loadData();
-  });
-
-  // What happens when the price is updated?
-  $(document).bind("marketdataavailable", function() {
-    // myTime = new Date(bitcoinprices.data.timestamp);
-    $('#time').text(myTime);
-    $('#refresh').text('Refresh');
-    calculate();
   });
 
   // Trigger calculation on text change.
@@ -114,6 +109,7 @@ $(document).ready(function() {
   // Calculate other fields based on the "change" parameter.
   // "change" is the name of the field which has changed.
   function calculate(change) {
+    console.log('in calculate');
     buy_amount_USD = Number($("input[name='buy_amount_USD']").val());
     buy_amount_BTC = Number($("input[name='buy_amount_BTC']").val());
     buy_amount_mBTC = Number($("input[name='buy_amount_mBTC']").val());
